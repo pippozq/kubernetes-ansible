@@ -1,0 +1,7 @@
+---
+- hosts: kube_node
+  remote_user: root
+  vars_files:
+    - 'vars/redhat_kube_node.yml'
+  roles:
+    - node
