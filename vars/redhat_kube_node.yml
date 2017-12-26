@@ -16,12 +16,12 @@ sys_config_path: '/etc/sysconfig'
 
 #kube args
 kube_config_path: '/etc/kubernetes'
-kube_master: '172.16.251.32:8080'
+kube_master: '172.16.251.50:8080'
 
 #docker registry
 docker_registry: '172.16.251.35:5000'
 
 #flannel args
-etcd_endpoint: 172.16.251.32:2379
+etcd_endpoint: 172.16.251.50:2379
 etcd_prefix: '/k8s/network'
-eth: 'eno1'
+eth: 'eth0'

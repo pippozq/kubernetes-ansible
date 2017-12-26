@@ -14,7 +14,10 @@
 
 - name: Config Docker
   template: src=docker dest={{sys_config_path}} mode=644
-
+  
+- name: Add docker accelerator
+  template: src=daemon.json dest=/etc/docker
+  when: accelerator
 
 - name: Config Flannel
   template: src=flanneld dest={{sys_config_path}} mode=644

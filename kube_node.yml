@@ -1,6 +1,8 @@
 ---
 - hosts: kube_node
   remote_user: root
+  vars:
+     accelerator: true
   vars_files:
     - 'vars/redhat_kube_node.yml'
   roles:
