@@ -1,0 +1,7 @@
+---
+- hosts: etcd
+  remote_user: root
+  vars_files:
+    - 'vars/etcd.yml'
+  roles:
+    - etcd

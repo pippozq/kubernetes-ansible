@@ -1,0 +1,45 @@
+---
+
+- name: Install Kubernets and Flannel
+  yum:
+      name: "{{item}}"
+      state: present
+  with_items:
+    - "{{kubernets_master_install_list}}"
+    
+- name: Config Kubernets
+  template: src="{{item}}" dest={{kube_config_path}} mode=644
+  with_items:
+    - "{{kubernets_config_file_list}}"
+
+- name: Config Docker
+  template: src=docker dest={{sys_config_path}} mode=644
+  
+- name: Add docker accelerator
+  template: src=daemon.json dest=/etc/docker
+  when: accelerator
+
+- name: Config Flannel
+  template: src=flanneld dest={{sys_config_path}} mode=644
+
+- name: Restart Docker and Flannel Serivce
+  systemd:
+    name: "{{item}}"
+    state: restarted
+  with_items:
+    - 'flanneld'
+    - 'docker'
+
+
+- name: Stop Firewalld
+  systemd:
+    name: 'firewalld'
+    state: stopped
+  ignore_errors: true
+
+- name: Start Kubernetes Master
+  systemd:
+    name: "{{item}}"
+    state: restarted
+  with_items:
+    - "{{kubernets_services}}"

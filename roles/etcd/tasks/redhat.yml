@@ -1,0 +1,20 @@
+---
+
+- name: Install Etcd
+  yum:
+      name: etcd
+      state: present
+
+- name: Config Etcd
+  template: src=etcd.conf dest={{etcd_config_path}} mode=644
+
+- name: Start Etcd
+  systemd:
+    name: etcd
+    state: started
+
+- name: Add Preifx
+  template: src=set_kube_prefix.sh dest=/tmp mode=744
+  
+- name: Run Etcd Config
+  shell: sh /tmp/set_kube_prefix.sh
