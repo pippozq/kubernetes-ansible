@@ -1,0 +1,5 @@
+---
+
+#etcd args
+etcd_config_path: '/etc/etcd/'
+etcd_prefix: '/k8s/network'
