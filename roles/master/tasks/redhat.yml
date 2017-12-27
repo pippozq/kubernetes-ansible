@@ -26,6 +26,7 @@
   systemd:
     name: "{{item}}"
     state: restarted
+    enabled: yes
   with_items:
     - 'flanneld'
     - 'docker'
@@ -35,11 +36,13 @@
   systemd:
     name: 'firewalld'
     state: stopped
+    enabled: no
   ignore_errors: true
-
+  
 - name: Start Kubernetes Master
   systemd:
     name: "{{item}}"
     state: restarted
+    enabled: yes
   with_items:
     - "{{kubernets_services}}"

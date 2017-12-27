@@ -12,6 +12,7 @@
   systemd:
     name: etcd
     state: started
+    enabled: yes
 
 - name: Add Preifx
   template: src=set_kube_prefix.sh dest=/tmp mode=744
