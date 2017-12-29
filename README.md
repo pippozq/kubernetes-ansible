@@ -1,7 +1,7 @@
 # Kubernetes-ansible
-1. Install etcd,flannel,kubernets by Ansible
+1. Install etcd,flannel,kubernetes by Ansible
 2. Using Redhad epel yum source
-3. Kubernets Version is not the lastest (latest version is **1.9**, version in epel is just **1.5**)
+3. kubernetes Version is not the lastest (latest version is **1.9**, version in epel is just **1.5**)
 
 ## Install Etcd
 1. Update the etcd host in hosts/hosts file (for now, do not support cluster)
@@ -27,7 +27,7 @@ ansible-playbook -i hosts/hosts etcd.yml --ask-pass
 
 ```
 
-## Install Kubernets Master
+## Install kubernetes Master
 1. Update the kube_master host in hosts/hosts file (for now, do not support cluster)
 ```
 [kube_master]
@@ -40,12 +40,12 @@ ansible-playbook -i hosts/hosts etcd.yml --ask-pass
 ```
 ---
 
-kubernets_master_install_list:
+kubernetes_master_install_list:
     - "epel-release"
     - "kubernetes"
     - "flannel"
 
-kubernets_config_file_list:
+kubernetes_config_file_list:
   - 'apiserver'
   - 'config'
   - 'kubelet'
@@ -60,7 +60,7 @@ kube_config_path: '/etc/kubernetes'
 kube_master: '172.16.251.60:8080' # your master ip or domain
 
 #kube service
-kubernets_services:
+kubernetes_services:
     - "kube-apiserver"
     - "kube-controller-manager"
     - "kube-proxy"
@@ -87,7 +87,7 @@ ansible-playbook -i hosts/hosts kube_master.yml --ask-pass
 ```
 
 
-## Install Kubernets Node
+## Install kubernetes Node
 1. Update the kube_node host in hosts/hosts file
 ```
 [kube_node]
@@ -101,12 +101,12 @@ ansible-playbook -i hosts/hosts kube_master.yml --ask-pass
 ```
 ---
 
-kubernets_node_install_list:
+kubernetes_node_install_list:
     - "epel-release"
     - "kubernetes-node"
     - "flannel"
 
-kubernets_config_file_list:
+kubernetes_config_file_list:
   - 'config'
   - 'kubelet'
   - 'proxy'

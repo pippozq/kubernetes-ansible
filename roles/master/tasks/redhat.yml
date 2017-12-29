@@ -1,16 +1,16 @@
 ---
 
-- name: Install Kubernets and Flannel
+- name: Install kubernetes and Flannel
   yum:
       name: "{{item}}"
       state: present
   with_items:
-    - "{{kubernets_master_install_list}}"
+    - "{{kubernetes_master_install_list}}"
     
-- name: Config Kubernets
+- name: Config kubernetes
   template: src="{{item}}" dest={{kube_config_path}} mode=644
   with_items:
-    - "{{kubernets_config_file_list}}"
+    - "{{kubernetes_config_file_list}}"
 
 - name: Config Docker
   template: src=docker dest={{sys_config_path}} mode=644
@@ -45,4 +45,4 @@
     state: restarted
     enabled: yes
   with_items:
-    - "{{kubernets_services}}"
+    - "{{kubernetes_services}}"

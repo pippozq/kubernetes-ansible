@@ -1,11 +1,11 @@
 ---
 
-kubernets_node_install_list:
+kubernetes_node_install_list:
     - "epel-release"
     - "kubernetes-node"
     - "flannel"
 
-kubernets_config_file_list:
+kubernetes_config_file_list:
   - 'config'
   - 'kubelet'
   - 'proxy'
@@ -16,12 +16,12 @@ sys_config_path: '/etc/sysconfig'
 
 #kube args
 kube_config_path: '/etc/kubernetes'
-kube_master: '172.16.251.60:8080'
+kube_master: '172.16.251.56:8080'
 
 #docker registry
 docker_registry: '172.16.251.35:5000'
 
 #flannel args
-etcd_endpoint: '172.16.251.60:2379'
+etcd_endpoint: '172.16.251.56:2379'
 etcd_prefix: '/k8s/network'
 eth: 'eth0'
